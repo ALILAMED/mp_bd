@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mon application Flask</title>
+    <style>
+      /* Ajoutez ici votre CSS pour personnaliser la page */
+    </style>
+  </head>
+  <body>
+    <h1>Bienvenue dans mon application Flask</h1>
+    {% if message %}
+      <div id="message-box">{{ message }}</div>
+    {% endif %}
+    <script>
+      var messageBox = document.getElementById("message-box");
+
+// Si la boîte de dialogue existe
+if (messageBox) {
+  // Masquer la boîte de dialogue après 5 secondes
+  setTimeout(function() {
+    messageBox.style.display = "none";
+  }, 5000);
+
+  // Ajouter un événement de clic pour fermer la boîte de dialogue
+  var closeButton = document.createElement("button");
+  closeButton.innerHTML = "OK";
+  closeButton.onclick = function() {
+    messageBox.style.display = "none";
+  };
+  messageBox.appendChild(closeButton);
+}
+    </script>
+    <form method="POST" action="{{ url_for('ajouter') }}">
+      <label for="codPiece">Code de la pièce:</label>
+      <input type="text" id="codPiece" name="codPiece">
+      <label for="qtestck">Quantité en stock:</label>
+      <input type="number" id="qtestck" name="qtestck">
+      <label for="type">Type de la pièce:</label>
+      <input type="text" id="type" name="type">
+      <input type="submit" value="Ajouter">
+    </form>
+  </body>
+</html>
